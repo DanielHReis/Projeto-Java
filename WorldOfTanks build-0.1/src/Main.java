@@ -1,7 +1,10 @@
 import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
+        Random rand = new Random();
         Scanner scanner = new Scanner(System.in);
         CadastroService cadastro = new CadastroService();
 
@@ -23,21 +26,43 @@ public class Main {
                     String codinomeL = scanner.nextLine();
                     System.out.print("Piloto (Humano/IA): ");
                     String pilotoL = scanner.nextLine();
-                    cadastro.cadastrarTanque(new TanqueLeve(cadastro.hashCode(), codinomeL, pilotoL, "10:00"));
+                    int idL = rand.nextInt(12) + 1;
+                    System.out.println("Id gerado : " + idL);
+
+                    TanqueLeve tanqueleve = new TanqueLeve(idL, codinomeL, pilotoL, LocalDateTime.now(), 100, pilotoL);
+                    cadastro.cadastrarTanque(tanqueleve);
+                    System.out.println("Tanque : " + tanqueleve);
+                    System.out.println("cadastrado com sucesso.");
+
                     break;
                 case 2:
                     System.out.print("Codinome: ");
                     String codinomeM = scanner.nextLine();
                     System.out.print("Piloto (Humano/IA): ");
                     String pilotoM = scanner.nextLine();
-                    cadastro.cadastrarTanque(new TanqueMedio(cadastro.hashCode(), codinomeM, pilotoM, "10:00"));
+                    System.out.println("Id gerado : ");
+                    int idM = rand.nextInt(12) + 1;
+
+                    TanqueMedio tanquemedio = new TanqueMedio(idM, codinomeM, pilotoM, LocalDateTime.now(), 100,
+                            "Ativo");
+                    cadastro.cadastrarTanque(tanquemedio);
+                    System.out.println("Tanque : " + tanquemedio);
+                    System.out.println("cadastrado com sucesso.");
+
                     break;
                 case 3:
                     System.out.print("Codinome: ");
                     String codinomeP = scanner.nextLine();
                     System.out.print("Piloto (Humano/IA): ");
                     String pilotoP = scanner.nextLine();
-                    cadastro.cadastrarTanque(new TanquePesado(cadastro.hashCode(), codinomeP, pilotoP, "10:00"));
+                    System.out.println("Id gerado : ");
+                    int idP = rand.nextInt(12) + 1;
+                    TanquePesado tanquepesado = new TanquePesado(idP, codinomeP, pilotoP, LocalDateTime.now(), 100,
+                            "Ativo");
+                    cadastro.cadastrarTanque(tanquepesado);
+                    System.out.println("Tanque : " + tanquepesado);
+                    System.out.println("cadastrado com sucesso.");
+
                     break;
                 case 4:
                     cadastro.listarTanques();
