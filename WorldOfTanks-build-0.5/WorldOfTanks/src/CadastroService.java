@@ -23,4 +23,29 @@ public class CadastroService {
             }
         }
     }
+
+    // NOVO MÉTODO: Obter lista de tanques para o AgendamentoService
+    public List<Tanque> getTanques() {
+        return new ArrayList<>(tanques);
+    }
+
+    // NOVO MÉTODO: Buscar tanque por ID
+    public Tanque buscarTanquePorId(int id) {
+        for (Tanque tanque : tanques) {
+            if (tanque.getId() == id) {
+                return tanque;
+            }
+        }
+        return null;
+    }
+
+    // NOVO MÉTODO: Buscar tanque por codinome
+    public Tanque buscarTanquePorCodinome(String codinome) {
+        for (Tanque tanque : tanques) {
+            if (tanque.getCodinome().equalsIgnoreCase(codinome)) {
+                return tanque;
+            }
+        }
+        return null;
+    }
 }

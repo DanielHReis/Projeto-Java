@@ -15,6 +15,10 @@ public class Main {
             System.out.println("2. Cadastrar Tanque Médio");
             System.out.println("3. Cadastrar Tanque Pesado");
             System.out.println("4. Listar Tanques");
+            System.out.println("5. Agendar Partida");
+            System.out.println("6. Listar Partidas");
+            System.out.println("7. Gerenciar Partida");
+            System.out.println("8. Simular Batalha");
             System.out.println("0. Sair");
             System.out.print("Escolha: ");
             opcao = scanner.nextInt();
@@ -22,48 +26,28 @@ public class Main {
 
             switch (opcao) {
                 case 1:
-                    System.out.print("Codinome: ");
-                    String codinomeL = scanner.nextLine();
-                    System.out.print("Piloto (HUMANO/IA): ");
-                    String pilotoL = scanner.nextLine();
-                    pilotoL = pilotoL.toUpperCase();
-                    int idL = rand.nextInt(12) + 1;
-                    System.out.println("Id gerado : " + idL);
-
-                    TanqueLeve tanqueleve = new TanqueLeve(idL, codinomeL, pilotoL, LocalDateTime.now(), 100, "Ativo");
-                    cadastro.cadastrarTanque(tanqueleve);
-
+                    cadastrarTanqueLeve(scanner, rand, cadastro);
                     break;
                 case 2:
-                    System.out.print("Codinome: ");
-                    String codinomeM = scanner.nextLine();
-                    System.out.print("Piloto (HUMANO/IA): ");
-                    String pilotoM = scanner.nextLine();
-                    pilotoM = pilotoM.toUpperCase();
-                    int idM = rand.nextInt(12) + 1;
-                    System.out.println("Id gerado : " + idM);
-                    
-
-                    TanqueMedio tanquemedio = new TanqueMedio(idM, codinomeM, pilotoM, LocalDateTime.now(), 100, "Ativo");
-                    cadastro.cadastrarTanque(tanquemedio);
-
+                    cadastrarTanqueMedio(scanner, rand, cadastro);
                     break;
                 case 3:
-                    System.out.print("Codinome: ");
-                    String codinomeP = scanner.nextLine();
-                    System.out.print("Piloto (HUMANO/IA): ");
-                    String pilotoP = scanner.nextLine();
-                    pilotoP = pilotoP.toUpperCase();
-                    int idP = rand.nextInt(12) + 1;
-                    System.out.println("Id gerado : " + idP);
-                    
-                    
-                    TanquePesado tanquepesado = new TanquePesado(idP, codinomeP, pilotoP, LocalDateTime.now(), 100,"Ativo");
-                    cadastro.cadastrarTanque(tanquepesado);
-
+                    cadastrarTanquePesado(scanner, rand, cadastro);
                     break;
                 case 4:
                     cadastro.listarTanques();
+                    break;
+                case 5:
+                    AgendamentoService.agendarPartida(scanner, cadastro);
+                    break;
+                case 6:
+                    AgendamentoService.listarPartidas();
+                    break;
+                case 7:
+                    AgendamentoService.gerenciarPartida(scanner);
+                    break;
+                case 8:
+                    BattleSimulator.simularBatalha(scanner, cadastro);
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -74,5 +58,41 @@ public class Main {
         } while (opcao != 0);
 
         scanner.close();
+    }
+
+    private static void cadastrarTanqueLeve(Scanner scanner, Random rand, CadastroService cadastro) {
+        System.out.print("Codinome: ");
+        String codinome = scanner.nextLine();
+        System.out.print("Piloto (HUMANO/IA): ");
+        String piloto = scanner.nextLine().toUpperCase();
+        int id = rand.nextInt(12) + 1;
+        System.out.println("Id gerado: " + id);
+
+        TanqueLeve tanque = new TanqueLeve(id, codinome, piloto, LocalDateTime.now(), 100, "Ativo");
+        cadastro.cadastrarTanque(tanque);
+    }
+
+    private static void cadastrarTanqueMedio(Scanner scanner, Random rand, CadastroService cadastro) {
+        System.out.print("Codinome: ");
+        String codinome = scanner.nextLine();
+        System.out.print("Piloto (HUMANO/IA): ");
+        String piloto = scanner.nextLine().toUpperCase();
+        int id = rand.nextInt(12) + 1;
+        System.out.println("Id gerado: " + id);
+
+        TanqueMedio tanque = new TanqueMedio(id, codinome, piloto, LocalDateTime.now(), 100, "Ativo");
+        cadastro.cadastrarTanque(tanque);
+    }
+
+    private static void cadastrarTanquePesado(Scanner scanner, Random rand, CadastroService cadastro) {
+        System.out.print("Codinome: ");
+        String codinome = scanner.nextLine();
+        System.out.print("Piloto (HUMANO/IA): ");
+        String piloto = scanner.nextLine().toUpperCase();
+        int id = rand.nextInt(12) + 1;
+        System.out.println("Id gerado: " + id);
+
+        TanquePesado tanque = new TanquePesado(id, codinome, piloto, LocalDateTime.now(), 100, "Ativo");
+        cadastro.cadastrarTanque(tanque);
     }
 }
