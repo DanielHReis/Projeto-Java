@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.time.LocalDateTime;
 import java.util.Random;
 
 public class Main {
@@ -25,10 +26,10 @@ public class Main {
                     String codinomeL = scanner.nextLine();
                     System.out.print("Piloto (Humano/IA): ");
                     String pilotoL = scanner.nextLine();
-                    System.out.println("Id gerado : ");
                     int idL = rand.nextInt(12) + 1;
+                    System.out.println("Id gerado : " + idL);
 
-                    TanqueLeve tanqueleve = new TanqueLeve(idL, codinomeL, pilotoL, null, 100, pilotoL);
+                    TanqueLeve tanqueleve = new TanqueLeve(idL, codinomeL, pilotoL, LocalDateTime.now(), 100, pilotoL);
                     cadastro.cadastrarTanque(tanqueleve);
                     System.out.println("Tanque : " + tanqueleve);
                     System.out.println("cadastrado com sucesso.");
@@ -56,7 +57,7 @@ public class Main {
                     System.out.println("Id gerado : ");
                     int idP = rand.nextInt(12) + 1;
                     TanquePesado tanquepesado = new TanquePesado(idP, codinomeP, pilotoP, null, 100, pilotoP);
-                    cadastro.cadastrarTanque (tanquepesado);
+                    cadastro.cadastrarTanque(tanquepesado);
                     System.out.println("Tanque : " + tanquepesado);
                     System.out.println("cadastrado com sucesso.");
 
