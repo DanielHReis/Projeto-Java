@@ -43,7 +43,7 @@ public class Main {
                     System.out.println("Id gerado : ");
                     int idM = rand.nextInt(12) + 1;
 
-                    TanqueMedio tanquemedio = new TanqueMedio(idM, codinomeM, pilotoM, null, 100, pilotoM);
+                    TanqueMedio tanquemedio = new TanqueMedio(idM, codinomeM, pilotoM, LocalDateTime.now(), 100, "Ativo");
                     cadastro.cadastrarTanque(tanquemedio);
                     System.out.println("Tanque : " + tanquemedio);
                     System.out.println("cadastrado com sucesso.");
@@ -56,7 +56,7 @@ public class Main {
                     String pilotoP = scanner.nextLine();
                     System.out.println("Id gerado : ");
                     int idP = rand.nextInt(12) + 1;
-                    TanquePesado tanquepesado = new TanquePesado(idP, codinomeP, pilotoP, null, 100, pilotoP);
+                    TanquePesado tanquepesado = new TanquePesado(idP, codinomeP, pilotoP, LocalDateTime.now(), 100, "Ativo");
                     cadastro.cadastrarTanque(tanquepesado);
                     System.out.println("Tanque : " + tanquepesado);
                     System.out.println("cadastrado com sucesso.");
