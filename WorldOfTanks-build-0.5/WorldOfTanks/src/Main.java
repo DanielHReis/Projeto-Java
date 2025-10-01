@@ -24,15 +24,14 @@ public class Main {
                 case 1:
                     System.out.print("Codinome: ");
                     String codinomeL = scanner.nextLine();
-                    System.out.print("Piloto (Humano/IA): ");
+                    System.out.print("Piloto (HUMANO/IA): ");
                     String pilotoL = scanner.nextLine();
+                    pilotoL = pilotoL.toUpperCase();
                     int idL = rand.nextInt(12) + 1;
                     System.out.println("Id gerado : " + idL);
 
                     TanqueLeve tanqueleve = new TanqueLeve(idL, codinomeL, pilotoL, LocalDateTime.now(), 100, "Ativo");
                     cadastro.cadastrarTanque(tanqueleve);
-                    System.out.println("Tanque : " + tanqueleve);
-                    System.out.println("cadastrado com sucesso.");
 
                     break;
                 case 2:
@@ -40,27 +39,27 @@ public class Main {
                     String codinomeM = scanner.nextLine();
                     System.out.print("Piloto (HUMANO/IA): ");
                     String pilotoM = scanner.nextLine();
-                    System.out.println("Id gerado : ");
+                    pilotoM = pilotoM.toUpperCase();
                     int idM = rand.nextInt(12) + 1;
+                    System.out.println("Id gerado : " + idM);
+                    
 
                     TanqueMedio tanquemedio = new TanqueMedio(idM, codinomeM, pilotoM, LocalDateTime.now(), 100, "Ativo");
                     cadastro.cadastrarTanque(tanquemedio);
-                    System.out.println("Tanque : " + tanquemedio);
-                    System.out.println("cadastrado com sucesso.");
 
                     break;
                 case 3:
                     System.out.print("Codinome: ");
                     String codinomeP = scanner.nextLine();
-                    System.out.print("Piloto (Humano/IA): ");
+                    System.out.print("Piloto (HUMANO/IA): ");
                     String pilotoP = scanner.nextLine();
-                    System.out.println("Id gerado : ");
+                    pilotoP = pilotoP.toUpperCase();
                     int idP = rand.nextInt(12) + 1;
+                    System.out.println("Id gerado : " + idP);
+                    
                     
                     TanquePesado tanquepesado = new TanquePesado(idP, codinomeP, pilotoP, LocalDateTime.now(), 100,"Ativo");
                     cadastro.cadastrarTanque(tanquepesado);
-                    System.out.println("Tanque : " + tanquepesado);
-                    System.out.println("cadastrado com sucesso.");
 
                     break;
                 case 4:

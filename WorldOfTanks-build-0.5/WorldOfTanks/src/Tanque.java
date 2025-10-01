@@ -226,16 +226,16 @@ public abstract class Tanque {
     @Override
     public String toString() {
         return "TANQUE" + "\n" +
-                "ID= " + String.valueOf(id).toUpperCase() + "\n" +
-                "CODINOME= " + codinome.toUpperCase() + "\n" +
-                "CLASSE= " + classe.toUpperCase() + "\n" +
-                "BLINDAGEM= " + String.valueOf(blindagem).toUpperCase() + "\n" +
-                "VELOCIDADE= " + String.valueOf(velocidade).toUpperCase() + "\n" +
-                "PODER DE FOGO= " + String.valueOf(poderDeFogo).toUpperCase() + "\n" +
-                "PILOTO= " + piloto.toUpperCase() + "\n" +
-                "HORA ENTRADA ARENA= " + getHoraEntradaFormatada().toUpperCase() + "\n" +
-                "INTEGRIDADE= " + String.valueOf(integridade).toUpperCase() + "\n" +
-                "STATUS= " + status.toUpperCase() + "\n" +
+                "ID = " + String.valueOf(id).toUpperCase() + "\n" +
+                "CODINOME = " + codinome.toUpperCase() + "\n" +
+                "CLASSE = " + classe.toUpperCase() + "\n" +
+                "BLINDAGEM = " + String.valueOf(blindagem).toUpperCase() + "\n" +
+                "VELOCIDADE = " + String.valueOf(velocidade).toUpperCase() + "\n" +
+                "PODER DE FOGO = " + String.valueOf(poderDeFogo).toUpperCase() + "\n" +
+                "PILOTO = " + piloto.toUpperCase() + "\n" +
+                "HORA ENTRADA ARENA = " + getHoraEntradaFormatada().toUpperCase() + "\n" +
+                "INTEGRIDADE = " + String.valueOf(integridade).toUpperCase() + "\n" +
+                "STATUS = " + status.toUpperCase() + "\n" +
                 "==============================";
     }
 }

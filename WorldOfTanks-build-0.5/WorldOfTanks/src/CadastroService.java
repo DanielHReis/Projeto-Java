@@ -7,7 +7,7 @@ public class CadastroService {
     public void cadastrarTanque(Tanque tanque) {
         if (tanques.size() < 12) {
             tanques.add(tanque);
-            System.out.println("Tanque cadastrado com sucesso: " + tanque);
+            System.out.println("\nTanque cadastrado com sucesso:\n" + tanque);
         } else {
             System.out.println("Limite de 12 tanques atingido!");
         }
