@@ -1,11 +1,5 @@
 # Arena Battle Tanks - Sistema de Gerenciamento de Batalhas
 
-## 👥 Autores do Projeto
-- **Rafael Albuquerque**
-- **Daniel Henrique** 
-- **Matheus Lima**
-- **Cauê Milhomen**
-
 ## 🎯 Descrição do Projeto
 Sistema completo de gerenciamento para uma arena de batalhas de tanques, permitindo cadastro de tanques, agendamento de partidas, simulação de batalhas PvE/PvP, ranking de desempenho e relatórios detalhados.
 
@@ -161,4 +155,67 @@ CREATE DATABASE tanques;
 - Tanques compostos por múltiplas armas
 - Partidas compostas por múltiplos tanques
 
-O projeto demonstra domínio completo dos conceitos de POO com integração prática de tecnologias externas para criar um sistema robusto e escalável.
+📋 Pré-requisitos
+Java 17 ou superior
+
+MySQL 8.0 ou superior
+
+Maven 3.6 ou superior
+
+🛠️ Instalação e Configuração
+Clone o repositório:
+
+bash
+git clone [url-do-repositorio]
+cd arena-battle-tanks
+Configure o banco de dados MySQL:
+
+sql
+CREATE DATABASE tanques;
+CREATE USER 'root'@'localhost' IDENTIFIED BY 'root';
+GRANT ALL PRIVILEGES ON tanques.* TO 'root'@'localhost';
+Configure as dependências do Maven:
+
+bash
+mvn clean install
+Execute a aplicação:
+
+bash
+mvn exec:java -Dexec.mainClass="com.battletanks.Main"
+
+🎮 Como Usar
+Cadastre tanques através do menu principal
+
+Agende partidas selecionando modo, data e participantes
+
+Simule batalhas entre tanques cadastrados
+
+Acompanhe rankings e estatísticas de desempenho
+
+Exporte relatórios em formato CSV
+
+🐛 Solução de Problemas
+Problema: Erro de conexão com MySQL
+
+Verifique se o MySQL está rodando na porta 3306
+
+Confirme as credenciais em Conexao.java
+
+Problema: Limite de tanques excedido
+
+O sistema permite no máximo 12 tanques cadastrados simultaneamente
+
+Problema: Conflito de agendamento
+
+Verifique se a arena ou tanque já estão ocupados no horário selecionado
+
+👨‍💻 Contribuição
+Desenvolvido por:
+
+Rafael Albuquerque
+
+Daniel Henrique
+
+Matheus Lima
+
+Cauê Milhomen
