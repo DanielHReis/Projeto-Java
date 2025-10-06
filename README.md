@@ -137,7 +137,7 @@ CREATE DATABASE tanques;
 3. Executar `Main.java`
 4. Seguir menu interativo
 
-## 🎯 Principais Padrões OO Aplicados
+## 🎯 Principais Padrões POO Aplicados
 
 ### **Herança**
 - `Tanque` ← `TanqueLeve`, `TanqueMedio`, `TanquePesado`
