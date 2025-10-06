@@ -6,7 +6,7 @@
     
     <modelVersion>4.0.0</modelVersion>
     
-    <!-- Informações do seu projeto -->
+    <!-- Informações do projeto -->
     <groupId>com.battletanks</groupId>
     <artifactId>arena-battle-tanks</artifactId>
     <version>1.0.0</version>
@@ -23,14 +23,6 @@
     
     <!-- Dependências do projeto -->
     <dependencies>
-        <!-- JUnit para testes -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>5.9.2</version>
-            <scope>test</scope>
-        </dependency>
-        
         <!-- OpenCSV para exportação CSV -->
         <dependency>
             <groupId>com.opencsv</groupId>
