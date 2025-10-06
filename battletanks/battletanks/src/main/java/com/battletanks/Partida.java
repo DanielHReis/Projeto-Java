@@ -7,13 +7,14 @@ import java.util.List;
 
 public class Partida {
     private int id;
-    private String modo; // TREINO, UM_VS_UM, EQUIPES
+    private String modo;
     private LocalDateTime dataHoraInicio;
     private int duracaoMinutos;
-    private String arena; // DESERTO, URBANO, CAMPO_ABERTO
+    private String arena;
     private List<Tanque> tanquesParticipantes;
-    private String status; // AGENDADA, EM_ANDAMENTO, CONCLUIDA, CANCELADA
+    private String status;
     private List<String> eventos;
+    private boolean partidaReal; // Novo campo para identificar partidas reais
 
     public Partida(int id, String modo, LocalDateTime dataHoraInicio, int duracaoMinutos, String arena) {
         this.id = id;
@@ -24,7 +25,17 @@ public class Partida {
         this.tanquesParticipantes = new ArrayList<>();
         this.status = "AGENDADA";
         this.eventos = new ArrayList<>();
+        this.partidaReal = true; // Partidas agendadas são reais por padrão
         adicionarEvento("Partida agendada para " + getDataHoraFormatada());
+    }
+
+    public boolean isPartidaReal() {
+        return partidaReal;
+    }
+
+    // Adicione este setter
+    public void setPartidaReal(boolean partidaReal) {
+        this.partidaReal = partidaReal;
     }
 
     // Getters e Setters
@@ -65,7 +76,6 @@ public class Partida {
         adicionarEvento("Status alterado para: " + status);
     }
 
-    // Métodos de negócio
     public boolean adicionarTanque(Tanque tanque) {
         if (tanquesParticipantes.size() >= getLimiteTanques()) {
             adicionarEvento("Falha ao adicionar " + tanque.getCodinome() + " - Limite atingido");
@@ -98,7 +108,7 @@ public class Partida {
             if (p.getTanquesParticipantes().contains(tanque)) {
                 LocalDateTime fimP = p.getDataHoraInicio().plusMinutes(p.getDuracaoMinutos());
                 if (dataHora.isBefore(fimP) && fimNovaPartida.isAfter(p.getDataHoraInicio())) {
-                    return true; // Conflito detectado
+                    return true;
                 }
             }
         }
@@ -130,11 +140,21 @@ public class Partida {
         adicionarEvento("=== PARTIDA INICIADA ===");
         adicionarEvento("Modo: " + modo + " | Arena: " + arena);
         adicionarEvento("Participantes: " + tanquesParticipantes.size() + " tanques");
+
+        // Registrar início no ranking
+        if (partidaReal) {
+            RankingService.registrarEventoGlobal("Partida #" + id + " iniciada - " + modo + " na arena " + arena);
+        }
     }
 
     public void finalizarPartida() {
         this.status = "CONCLUIDA";
         adicionarEvento("=== PARTIDA CONCLUÍDA ===");
+
+        // Registrar conclusão no ranking apenas se for partida real
+        if (partidaReal) {
+            RankingService.registrarEventoGlobal("Partida #" + id + " concluída - " + modo);
+        }
     }
 
     @Override

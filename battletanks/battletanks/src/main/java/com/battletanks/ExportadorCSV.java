@@ -8,7 +8,7 @@ import java.util.List;
 public class ExportadorCSV {
 
     public static void exportarTanques(List<Tanque> tanques, String nomeArquivo) {
-        // monta o caminho completo na Área de Trabalho do usuário "mathe"
+        
         String caminho = Paths.get(System.getProperty("user.home"), "Documents" , nomeArquivo + ".csv").toString();
 
         try (FileWriter writer = new FileWriter(caminho)) {

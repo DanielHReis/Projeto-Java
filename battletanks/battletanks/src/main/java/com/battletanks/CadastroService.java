@@ -39,7 +39,9 @@ public class CadastroService {
 
             switch (escolha) {
                 case "1" -> excluirTanquePorID();
-                case "0" -> { return; }
+                case "0" -> { 
+                    System.out.println("Voltando ao menu principal...");
+                }
                 default -> System.out.println("Opção inválida!");
             }
         }
@@ -53,7 +55,7 @@ public class CadastroService {
     public Tanque buscarTanquePorId(int id) {
        Tanque tanque = dao.buscarPorId(id);
         if (tanque == null) {
-            System.out.println("⚠️ Nenhum tanque encontrado com o ID " + id);
+            System.out.println("Nenhum tanque encontrado com o ID " + id);
         }
 
         return tanque;

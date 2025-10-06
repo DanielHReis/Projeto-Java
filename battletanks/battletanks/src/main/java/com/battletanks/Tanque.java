@@ -21,9 +21,12 @@ public abstract class Tanque {
     protected int tempoSuperaquecimento;
 
     public Tanque() {
+        this.armas = new ArrayList<>();
+        this.superaquecimento = false;
+        this.tempoSuperaquecimento = 0;
     }
     public Tanque(int id, String codinome, String classe, int blindagem, int velocidade,
-            int poderDeFogo, String piloto, int integridade, String status) {
+            int poderDeFogo, String piloto, int integridade, String status) { this();
         this.id = id;
         this.codinome = codinome;
         this.classe = classe;
@@ -37,6 +40,7 @@ public abstract class Tanque {
         this.armas = new ArrayList<>();
         this.superaquecimento = false;
         this.tempoSuperaquecimento = 0;
+        
         inicializarArmas();
     }
 
@@ -125,7 +129,7 @@ public abstract class Tanque {
         this.status = status;
     }
 
-    private void inicializarArmas() {
+    protected void inicializarArmas() {
         armas.add(new Canhao());
         armas.add(new Metralhadora());
         if ("Pesado".equals(classe)) {
@@ -202,7 +206,7 @@ public abstract class Tanque {
             status = "DESTRUIDO";
         } else if (precisaManutencao() && !"DESTRUIDO".equals(status)) {
             status = "EM MANUTENCAO";
-            System.out.println("⚠️  " + codinome + " enviado para manutenção automática");
+            System.out.println(" " + codinome + " enviado para manutenção automática");
         } else if (integridade > 0 && "DESTRUIDO".equals(status)) {
             status = "ATIVO";
         }

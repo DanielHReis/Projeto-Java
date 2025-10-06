@@ -70,13 +70,12 @@ public class AgendamentoService {
         System.out.println("2. URBANO");
         System.out.println("3. CAMPO_ABERTO");
         System.out.print("Escolha a arena: ");
-        int opcaoArena = scanner.nextInt();
-        scanner.nextLine();
+        String opcaoArena = scanner.nextLine();
 
         String arena = switch (opcaoArena) {
-            case 1 -> "DESERTO";
-            case 2 -> "URBANO";
-            case 3 -> "CAMPO_ABERTO";
+            case "1" -> "DESERTO";
+            case "2" -> "URBANO";
+            case "3" -> "CAMPO_ABERTO";
             default -> "CAMPO_ABERTO";
         };
 
@@ -251,7 +250,7 @@ public class AgendamentoService {
         }
     }
 
-    public static void gerenciarPartida(Scanner scanner) {
+    public static void gerenciarPartida(Scanner scanner, CadastroService cadastroService) {
         System.out.println("\n===== GERENCIAR PARTIDA =====");
         listarPartidas();
 
@@ -283,11 +282,45 @@ public class AgendamentoService {
 
         switch (opcao) {
             case 1:
+            if("AGENDADA".equals(partida.getStatus())) {
                 if (partida.getTanquesParticipantes().size() >= getMinimoTanques(partida.getModo())) {
                     partida.iniciarPartida();
                     System.out.println("Partida iniciada!");
+
+                    System.out.println("Modo: " + partida.getModo());
+                    System.out.println("Arena: " + partida.getArena());
+                
+                    if(partida.getModo().equals("UM_VS_UM") && partida.getTanquesParticipantes().size() == 2){
+
+                        System.out.println("\n INICIANDO BATALHA 1V1 INTERATIVA!");
+                        Tanque tanque1 = partida.getTanquesParticipantes().get(0);
+                        Tanque tanque2 = partida.getTanquesParticipantes().get(1);
+
+                        System.out.println(" " + tanque1.getCodinome() + " vs " + tanque2.getCodinome());
+                        System.out.println("Pressione Enter para começar...");
+                        scanner.nextLine();
+                        
+                        BattleSimulator.simularBatalhaEntreTanques(scanner, tanque1, tanque2);
+
+                    } else if (partida.getModo().equals("Treino")){
+                        System.out.println("Partida Iniciada treino interativo...");
+                        BattleSimulator.simularBatalha(scanner, cadastroService);
+
+                    } else {
+                        System.out.println("Modo " + partida.getModo() + " - Executando simulação automática...");
+                            partida.adicionarEvento("Partida executada em modo automático");
+                    }
+
+                    partida.finalizarPartida();
+                    
+                    RankingService.registrarEventoGlobal("Partida #" + partida.getId() + " iniciada - " + partida.getModo() + " na arena " + partida.getArena());
                 } else {
-                    System.out.println("Não é possível iniciar - número insuficiente de tanques!");
+                        System.out.println("Não é possível iniciar - número insuficiente de tanques!");
+                        System.out.println("Tanques presentes: " + partida.getTanquesParticipantes().size());
+                        System.out.println("Mínimo necessário: " + getMinimoTanques(partida.getModo()));
+                }
+            } else {
+                    System.out.println("Partida não pode ser iniciada. Status atual: " + partida.getStatus());
                 }
                 break;
             case 2:
@@ -310,6 +343,7 @@ public class AgendamentoService {
             default:
                 System.out.println("Opção inválida!");
         }
+
     }
 
     public static Partida buscarPartidaPorId(int id) {

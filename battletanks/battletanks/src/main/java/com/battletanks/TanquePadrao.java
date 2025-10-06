@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 public class TanquePadrao extends Tanque {
     
     public TanquePadrao() {
+        super();
+        inicializarArmas();
     }
 
     public TanquePadrao(int id, String codinome, String classe, int blindagem, int velocidade, int poderDeFogo,
@@ -20,6 +22,8 @@ public class TanquePadrao extends Tanque {
         this.horaEntradaArena = horaEntradaArena;
         this.integridade = integridade;
         this.status = status;
+
+        inicializarArmas();
     }
 
     @Override

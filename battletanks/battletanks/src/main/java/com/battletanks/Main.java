@@ -17,15 +17,11 @@ public class Main {
             if (os.contains("windows")) {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
             } else {
-                // Linux, Mac, Unix
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
             }
         } catch (final Exception e) {
-            // Fallback: imprime várias linhas em branco
-            for (int i = 0; i < 50; i++) {
-                System.out.println();
-            }
+            System.out.println("Não foi possível limpar o console.");
+            e.printStackTrace();
         }
     }
 
@@ -54,7 +50,7 @@ public class Main {
                 }
                 case "5" -> {
                     limparConsole();
-                    AgendamentoService.gerenciarPartida(scanner);
+                    AgendamentoService.gerenciarPartida(scanner, cadastro);
                 }
                 case "6" -> {
                     limparConsole();
@@ -114,7 +110,6 @@ public class Main {
         System.out.println("1. Tanque Leve");
         System.out.println("2. Tanque Médio");
         System.out.println("3. Tanque Pesado");
-        System.out.println("0. Voltar");
         System.out.print("Escolha o tipo: ");
 
         String tipo = scanner.nextLine();
