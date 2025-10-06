@@ -162,27 +162,6 @@ MySQL 8.0 ou superior
 
 Maven 3.6 ou superior
 
-🛠️ Instalação e Configuração
-Clone o repositório:
-
-bash
-git clone [url-do-repositorio]
-cd arena-battle-tanks
-Configure o banco de dados MySQL:
-
-sql
-CREATE DATABASE tanques;
-CREATE USER 'root'@'localhost' IDENTIFIED BY 'root';
-GRANT ALL PRIVILEGES ON tanques.* TO 'root'@'localhost';
-Configure as dependências do Maven:
-
-bash
-mvn clean install
-Execute a aplicação:
-
-bash
-mvn exec:java -Dexec.mainClass="com.battletanks.Main"
-
 🎮 Como Usar
 Cadastre tanques através do menu principal
 
